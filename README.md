@@ -2,8 +2,10 @@
 
 A beautiful, interactive web application for generating and exploring color palettes with stunning 3D effects and animations.
 
-![Color Palette Generator Screenshot](https://via.placeholder.com/800x450.png?text=Color+Palette+Generator)
+The Deployed Website - https://color-palette-generator-theta.vercel.app/
 
+
+![alt text](image.png)
 ## Features
 
 - **Multiple Palette Types**: Generate color harmonies including Complementary, Analogous, Triadic, and Shades
