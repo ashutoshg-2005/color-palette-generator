@@ -1,0 +1,272 @@
+.color-picker-container {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 25px;
+  background-color: white;
+  border-radius: 18px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1), 
+    0 5px 15px rgba(0, 0, 0, 0.05),
+    inset 0 -5px 10px rgba(0, 0, 0, 0.02);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+  transition: transform 0.1s ease;
+}
+
+.color-picker-container h2 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transform: translateZ(10px);
+}
+
+.color-picker-container h2::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  margin: 10px auto 0;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 3px;
+}
+
+.base-colors-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  transform: translateZ(20px);
+}
+
+.base-color-item, .add-color-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.base-color-item.active {
+  border-color: #333;
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.color-value {
+  opacity: 0;
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.base-color-item:hover .color-value {
+  opacity: 1;
+}
+
+.remove-color {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 18px;
+  height: 18px;
+  background-color: #ff4d4d;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.2s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.base-color-item:hover .remove-color {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.add-color-button {
+  background-color: #f0f0f0;
+  color: #666;
+  font-size: 22px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.add-color-button:hover {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.color-picker-wrapper {
+  position: relative;
+  height: 220px;
+  transform: translateZ(25px);
+  transform-style: preserve-3d;
+}
+
+.picker-lighting {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.7;
+}
+
+/* Custom styling for react-colorful */
+.react-colorful-enhanced {
+  width: 100% !important;
+  height: 200px !important;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transform-style: preserve-3d;
+}
+
+.react-colorful-enhanced .react-colorful__saturation {
+  border-radius: 12px !important;
+  border: none !important;
+  margin-bottom: 15px !important;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.react-colorful-enhanced .react-colorful__hue {
+  height: 20px !important;
+  border-radius: 10px !important;
+}
+
+.react-colorful-enhanced .react-colorful__interactive {
+  outline: none !important;
+}
+
+.react-colorful-enhanced .react-colorful__pointer {
+  width: 24px !important;
+  height: 24px !important;
+  border-width: 3px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  transform: translate(-50%, -50%);
+}
+
+.react-colorful-enhanced .react-colorful__saturation-pointer {
+  border-color: white !important;
+}
+
+/* Animation for color picker container */
+@keyframes float-subtle {
+  0% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotateX(2deg) rotateY(-1deg);
+  }
+  100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .color-picker-container {
+    animation: float-subtle 6s ease-in-out infinite;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .color-picker-container {
+    padding: 15px;
+  }
+
+  .base-color-item, .add-color-button {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Custom color input form */
+.custom-color-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  transform: translateZ(20px);
+}
+
+.custom-color-input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.custom-color-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.25);
+}
+
+.custom-color-input.invalid {
+  border-color: #ff4d4d;
+  background-color: rgba(255, 77, 77, 0.05);
+}
+
+.custom-color-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(118, 75, 162, 0.25);
+}
+
+.custom-color-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #cccccc;
+  box-shadow: none;
+}
+
+.custom-color-btn:not(:disabled):hover {
+  box-shadow: 0 6px 10px rgba(118, 75, 162, 0.3);
+}
